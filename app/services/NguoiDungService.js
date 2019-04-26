@@ -70,6 +70,37 @@ function NguoiDungSerVice(){
         return mangTimKiem;
     }
 
+    
+    //Cach 1 : lay theo vi tri
+    this.layViTriNguoiDung = function(taikhoan){
+        //c1: dung ham map
+        // var viTri;
+        //var dsNguoiDung = JSON.parse(localStorage.getItem('danhSachNguoiDung'));
+        // dsNguoiDung.map(function(item, index){
+        //     if(item.TaiKhoan === taikhoan){
+        //         viTri = index;
+        //         return viTri;
+        //     }
+        // })
+        // return viTri;
+
+        //c2: tìm vị trí trong mảng findIndex
+        var dsNguoiDung = JSON.parse(localStorage.getItem('danhSachNguoiDung'));
+        return dsNguoiDung.findIndex(function(item){
+            return item.TaiKhoan === taikhoan;
+        })
+
+    }
+
+    //cach 2: lay thong tin nguoi dung
+    this.layThongTinNguoiDung = function(taikhoan){
+        var dsNguoiDung = JSON.parse(localStorage.getItem('danhSachNguoiDung'));
+        return dsNguoiDung.find(function(item){
+            return item.TaiKhoan === taikhoan;
+        })
+        
+    }
+
 }
 
 

@@ -24,11 +24,32 @@ $(document).ready(function () {
     $('body').delegate('.btnSua', 'click', function () {
         getInput('Sửa người dùng', 'Cập nhật', 'btnCapNhat','primary');
 
+        //c1: lay theo vi tri
+        // var taiKhoan = $(this).data('taikhoan');
+        // var viTri = nguoiDungService.layDanhSachNguoiDung(taiKhoan);
+        // var dsNguoiDung = JSON.parse(localStorage.getItem('danhSachNguoiDung'));
+        // var nguoiDung = dsNguoiDung[viTri];
+
+        // $('#TaiKhoan').val(taiKhoan);
+        // $('#HoTen').val(nguoiDung.HoTen);
+        // $('#MatKhau').val(nguoiDung.MatKhau);
+        // $('#Email').val(nguoiDung.Email);
+        // $('#SoDienThoai').val(nguoiDung.SoDT);
+        // $('#loaiNguoiDung').val(nguoiDung.MaLoaiNguoiDung);
+
+
+        //c2: lay thong tin nguoi dung
         var taiKhoan = $(this).data('taikhoan');
-        var viTri = nguoiDungService.layViTriNguoiDung(taiKhoan);
-        
+        var nguoiDung = nguoiDungService.layThongTinNguoiDung(taiKhoan);
+        $('#TaiKhoan').val(taiKhoan);
+        $('#HoTen').val(nguoiDung.HoTen);
+        $('#MatKhau').val(nguoiDung.MatKhau);
+        $('#Email').val(nguoiDung.Email);
+        $('#SoDienThoai').val(nguoiDung.SoDT);
+        $('#loaiNguoiDung').val(nguoiDung.MaLoaiNguoiDung);
 
     })
+
 
     $('body').delegate('#btnThem', 'click', function(){
         var taiKhoan = $('#TaiKhoan').val();
@@ -86,7 +107,7 @@ $(document).ready(function () {
                 <td>${item.SoDT}</td>
                 <td>${item.TenLoaiNguoiDung}</td>
                 <td>
-                    <button class="btnSua  btn btn-primary" data-toggle="modal" data-target="#myModal">Sửa</button>
+                    <button class="btnSua  btn btn-primary" data-taikhoan="${item.TaiKhoan}" data-toggle="modal" data-target="#myModal">Sửa</button>
                     <button class="btnXoa  btn btn-danger" data-taikhoan="${item.TaiKhoan}">Xóa</button>
                 </td>
             </tr>
